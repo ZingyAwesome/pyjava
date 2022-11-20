@@ -6,8 +6,9 @@ on:
   push:
     branches:
       - master
-    paths:
-      - "3.**"
+    paths-ignore:
+      - "README.md"
+      - ".github/**"
 permissions:
   actions: read
   packages: write
