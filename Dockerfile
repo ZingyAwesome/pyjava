@@ -12,12 +12,16 @@ LABEL       author="ZingyAwesome" maintainer="development@zingyawesome.com"
 
 LABEL       org.opencontainers.image.source="https://github.com/ZingyAwesome/pyjava"
 
-RUN         apk add --update --no-cache cmake make ca-certificates curl g++ gcc git openssl sqlite tar tzdata gcompat libffi-dev zlib-dev jpeg-dev freetype-dev \
+RUN         apk add --update --no-cache cmake make ca-certificates curl g++ gcc git openssl sqlite tar tzdata gcompat tini libffi-dev zlib-dev jpeg-dev freetype-dev \
             && adduser -D -h /home/container container
 
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
-COPY        ./entrypoint.sh /entrypoint.sh
-CMD         [ "/bin/ash", "/entrypoint.sh" ]
+STOPSIGNAL  SIGINT
+
+COPY        --chown=container:container ./entrypoint.sh /entrypoint.sh
+RUN         chmod +x /entrypoint.sh
+ENTRYPOINT  ["/sbin/tini", "-g", "--"]
+CMD         [ "/entrypoint.sh" ]
