@@ -15,15 +15,17 @@ permissions:
   contents: read
 jobs:
   push:
-    name: "pyjava:${{ matrix.tag }}"
+    name: "Build: Python ${{ matrix.python_version }}, Java ${{ matrix.java_version }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        tag:
-          - '3.9'
+        python_version:
           - '3.10'
           - '3.11'
+          - '3.12'
+        java_version:
+          - '21'
 
     steps:
       - uses: actions/checkout@v4
@@ -45,8 +47,10 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./
-          file: ./${{ matrix.tag }}/Dockerfile
+          file: ./Dockerfile
           platforms: linux/amd64, linux/arm64
+          build-args: |
+            PYTHON_VERSION=${{ matrix.python_version }}
+            JAVA_VERSION=${{ matrix.java_version }}
+          tags: ghcr.io/zingyawesome/pyjava:${{ matrix.python_version }}-${{ matrix.java_version }}
           push: true
-          tags: |
-            ghcr.io/zingyawesome/pyjava:${{ matrix.tag }}

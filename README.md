@@ -1,4 +1,4 @@
 # pyjava
-A set of Docker images for the Pterodactyl Panel, containing Python images with Java 11 JRE included. Supports AMD64 and ARM64.
+A set of Docker images for the Pterodactyl Panel, containing Python and Java (JRE). Supports AMD64 and ARM64 architectures.
 
-You can either pull the GitHub Registry image, `ghcr.io/zingyawesome/pyjava:<python-version>`, or build it yourself.
+You can either pull a GitHub Registry image, `ghcr.io/zingyawesome/pyjava:<python-version>-<java-version>` (e.g. `ghcr.io/zingyawesome/pyjava:3.12-21`), or build it yourself.
