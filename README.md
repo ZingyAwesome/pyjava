@@ -2,9 +2,9 @@
 A set of Docker images for the Pterodactyl Panel, containing Python and Java (JRE). Supports AMD64 and ARM64 architectures.
 
 Python versions:
-- 3.10
-- 3.11
 - 3.12
+- 3.11
+- 3.10
 
 Java versions:
 - 21 LTS
