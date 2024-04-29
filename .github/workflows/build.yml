@@ -11,10 +11,10 @@ on:
       - ".github/**"
 permissions:
   actions: read
-  packages: write
   contents: read
+  packages: write
 jobs:
-  push:
+  build:
     name: "Build: Python ${{ matrix.python_version }}, Java ${{ matrix.java_version }}"
     runs-on: ubuntu-latest
     strategy:
