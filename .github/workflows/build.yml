@@ -29,7 +29,7 @@ jobs:
           - "21"
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Setup QEMU for multiarch build
         uses: docker/setup-qemu-action@v3
